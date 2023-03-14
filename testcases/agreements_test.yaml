@@ -1,0 +1,50 @@
+config:
+  name: cos源接口
+  variables:
+    foo1: config_bar1
+  headers:
+    User-Agent-Platform: Dalvik/2.1.0 (Linux; U; Android 10; GLK-AL00 Build/HUAWEIGLK-AL00)
+    lib_net_work_version: 3.0.1
+    User-Agent: Dalvik/2.1.0 (Linux; U; Android 10; GLK-AL00 Build/HUAWEIGLK-AL00)
+    Connection: close
+    Content-Type: application/json; charset=UTF-8
+
+teststeps:
+  - name: 用户协议
+    request:
+      method: GET
+      url: ${url($is_test,$host,cos)}/agreements/user.html
+    extract:
+      title: <title>(.*)</title>
+    validate:
+      - check: status_code
+        assert: equals
+        expect: 200
+        msg: assert response status code
+      - check: headers."Content-Type"
+        assert: equals
+        expect: text/html
+        msg: assert response header Content-Type
+      - check: $title
+        assert: equals
+        expect: 用户协议
+        msg: assert response html title
+  - name: 隐私协议
+    request:
+      method: GET
+      url: ${url($is_test,$host,cos)}/agreements/secret.html
+    extract:
+      title_2: <title>(.*)</title>
+    validate:
+      - check: status_code
+        assert: equals
+        expect: 200
+        msg: assert response status code
+      - check: headers."Content-Type"
+        assert: equals
+        expect: text/html
+        msg: assert response header Content-Type
+      - check: $title_2
+        assert: equals
+        expect: 隐私协议
+        msg: assert response html title

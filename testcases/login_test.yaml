@@ -1,0 +1,211 @@
+config:
+  name: 登录
+  headers:
+    User-Agent-Platform: Dalvik/2.1.0 (Linux; U; Android 10; GLK-AL00 Build/HUAWEIGLK-AL00)
+    lib_net_work_version: 3.0.1
+    User-Agent: Dalvik/2.1.0 (Linux; U; Android 10; GLK-AL00 Build/HUAWEIGLK-AL00)
+    Connection: close
+    Content-Type: application/json; charset=UTF-8
+
+teststeps:
+  - name: 临时登录为游客
+    request:
+      method: POST
+      url: ${url($is_test,$host,api)}/common/login/temp
+      params:
+        sign: 6a5fd4b1ff270ce8c6b16434d71c912e
+      headers:
+#        ClientUpdateTime: "1678343658124"
+        Content-Type: application/json; charset=utf-8
+        app-id: $appid
+#        device-brand: HUAWEI
+#        device_brand: HUAWEI
+#        device_model: GLK-AL00
+#        platform: android
+        qid: ety56789
+        udi: 50852389029b0c86f4169e1af0c39100
+        ver: 1.0.1
+      body:
+        udi: 50852389029b0c86f4169e1af0c39100
+    extract:
+      token: "headers.Authorization"
+    validate:
+      - check: status_code
+        assert: equals
+        expect: 200
+        msg: assert response status code
+      - check: headers."Content-Type"
+        assert: equals
+        expect: application/json; charset=utf-8
+        msg: assert response header Content-Type
+      - check: body.error_code
+        assert: equals
+        expect: 0
+        msg: assert response body error_code
+      - check: body.error_message
+        assert: equals
+        expect: ""
+        msg: assert response body error_message
+  - name: 手机号登录
+    request:
+      method: POST
+      url: ${url($is_test,$host,api)}/common/login/phone
+      params:
+        sign: 36c5b02145b7caa6229c59f8011392e4
+      headers:
+        Authorization: $token
+#        ClientUpdateTime: "1678344549875"
+        Content-Type: application/json; charset=utf-8
+        app-id: $appid
+#        device-brand: HUAWEI
+#        device_brand: HUAWEI
+#        device_model: GLK-AL00
+#        platform: android
+        qid: ety00044
+        udi: 50852389029b0c86f4169e1af0c39100
+        ver: 1.0.1
+      body:
+        code: "1534"
+        phone: "13917891535"
+        udi: 50852389029b0c86f4169e1af0c39100
+    validate:
+      - check: status_code
+        assert: equals
+        expect: 200
+        msg: assert response status code
+      - check: headers."Content-Type"
+        assert: equals
+        expect: application/json; charset=utf-8
+        msg: assert response header Content-Type
+      - check: body.error_code
+        assert: equals
+        expect: 0
+        msg: assert response body error_code
+      - check: body.error_message
+        assert: equals
+        expect: ""
+        msg: assert response body error_message
+      - check: body.meta
+        assert: equals
+        expect: ""
+        msg: assert response body meta
+  - name: vip信息查询
+    request:
+      method: POST
+      url: ${url($is_test,$host,api)}/common/user/vip_info
+      params:
+        sign: ee0f2bb0c11109ed1b7971c9fc284579
+      headers:
+#        Accept-Encoding: gzip
+        Authorization: $token
+#        ClientUpdateTime: "1678343704817"
+        Content-Type: application/json; charset=utf-8
+#        Host: test-api-tyct.ssyixi.com
+        app-id: $appid
+#        device-brand: HUAWEI
+#        device_brand: HUAWEI
+#        device_model: GLK-AL00
+#        platform: android
+        qid: ety00044
+        udi: 50852389029b0c86f4169e1af0c39100
+        ver: 1.0.1
+      body: { }
+    validate:
+      - check: status_code
+        assert: equals
+        expect: 200
+        msg: assert response status code
+      - check: headers."Content-Type"
+        assert: equals
+        expect: application/json; charset=utf-8
+        msg: assert response header Content-Type
+      - check: body.error_code
+        assert: equals
+        expect: 0
+        msg: assert response body error_code
+      - check: body.error_message
+        assert: equals
+        expect: ""
+        msg: assert response body error_message
+  - name: 发送手机验证码
+    request:
+      method: POST
+      url: ${url($is_test,$host,api)}/common/send_code_check
+      headers:
+        #            Accept-Encoding: gzip
+        Authorization: $token
+        #            ClientUpdateTime: "1678343722224"
+        Content-Type: application/json; charset=utf-8
+        app-id: $appid
+        #            device-brand: HUAWEI
+        #            device_brand: HUAWEI
+        #            device_model: GLK-AL00
+        #            platform: android
+        qid: ety00044
+        #            sign: ae8e436f5831751e2310787974e63406
+        #            timestamp: "1678343722"
+        udi: 50852389029b0c86f4169e1af0c39100
+        ver: 1.0.1
+      body:
+        phone: "13917891530"
+    validate:
+      - check: status_code
+        assert: equals
+        expect: 200
+        msg: assert response status code
+      - check: body.data
+        assert: equals
+        expect: ""
+        msg: assert response body data
+      - check: body.error_code
+        assert: equals
+        expect: 0
+        msg: assert response body error_code
+      - check: body.error_message
+        assert: equals
+        expect: ""
+        msg: assert response body error_message
+      - check: body.meta
+        assert: equals
+        expect: ""
+        msg: assert response body meta
+  - name: 运营配置客服QQ
+    request:
+      method: GET
+      url: ${url($is_test,$host,api)}/common/getContactQQ
+      params:
+        sign: 48eb8affe8c0618799c4a6b3f188b31d
+      headers:
+        Accept-Encoding: gzip
+        #            Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJ1c2VyIiwiZXhwIjoxNjgwOTM2NTQ5LCJqdGkiOiIyNDVfMyIsImlhdCI6MTY3ODM0NDU0OSwibmJmIjoxNjc4MzQ0NTQ5LCJJc1JlYWwiOiIxIiwiVWRpIjoiNTA4NTIzODkwMjliMGM4NmY0MTY5ZTFhZjBjMzkxMDAiLCJBcHBJZCI6MjQ1LCJVaWQiOjN9.HN8foN-LWIf2adVqov3_uavp6RBN_sIpRN-g8NzPuiw
+        #            ClientUpdateTime: "1678345491031"
+        Content-Type: application/json
+        app-id: $appid
+        #            device-brand: HUAWEI
+        #            device_brand: HUAWEI
+        #            device_model: GLK-AL00
+        #            platform: android
+        qid: ety00044
+        udi: 50852389029b0c86f4169e1af0c39100
+        ver: 1.0.1
+    validate:
+      - check: status_code
+        assert: equals
+        expect: 200
+        msg: assert response status code
+      - check: headers."Content-Type"
+        assert: equals
+        expect: application/json; charset=utf-8
+        msg: assert response header Content-Type
+      - check: body.data
+        assert: equals
+        expect: "3004660985"
+        msg: assert response body data
+      - check: body.error_code
+        assert: equals
+        expect: 0
+        msg: assert response body error_code
+      - check: body.error_message
+        assert: equals
+        expect: ""
+        msg: assert response body error_message

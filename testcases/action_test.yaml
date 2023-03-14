@@ -1,0 +1,92 @@
+config:
+    name: 回传上报
+    headers:
+      User-Agent-Platform: Dalvik/2.1.0 (Linux; U; Android 10; GLK-AL00 Build/HUAWEIGLK-AL00)
+      lib_net_work_version: 3.0.1
+      User-Agent: Dalvik/2.1.0 (Linux; U; Android 10; GLK-AL00 Build/HUAWEIGLK-AL00)
+      Connection: close
+      Content-Type: application/json; charset=UTF-8
+teststeps:
+    - name: 次留回传
+      request:
+        method: POST
+        url: $url_action/action/stay
+        headers:
+#            Accept-Encoding: gzip
+#            ClientUpdateTime: "1678343657506"
+#            Connection: close
+#            Content-Length: "134"
+            Content-Type: application/json; charset=UTF-8
+#            Host: api.backhaul.ubtt.cn
+            User-Agent: Dalvik/2.1.0 (Linux; U; Android 10; GLK-AL00 Build/HUAWEIGLK-AL00)
+            User-Agent-Platform: Dalvik/2.1.0 (Linux; U; Android 10; GLK-AL00 Build/HUAWEIGLK-AL00)
+            app-id: $appid
+#            device-brand: HUAWEI
+#            device-model: GLK-AL00
+#            lib_net_work_version: 3.0.1
+#            platform: android
+            qid: ety00044
+            udi: 50852389029b0c86f4169e1af0c39100
+            ver: 1.0.1
+        body:
+            android_id: ""
+            device_id: ""
+            idfa: ""
+            imei: ""
+            imei1: ""
+            imei2: ""
+            is_pull: "1"
+            oaid: 0f43bae1-047f-478a-b622-3c88731f334a
+      validate:
+        - check: status_code
+          assert: equals
+          expect: 200
+          msg: assert response status code
+        - check: headers."Content-Type"
+          assert: equals
+          expect: text/html; charset=UTF-8
+          msg: assert response header Content-Type
+    - name: 激活回传
+      request:
+        method: POST
+        url: $url_action/action/start_app
+        headers:
+#            Accept-Encoding: gzip
+#            ClientUpdateTime: "1678343657683"
+#            Connection: close
+#            Content-Length: "309"
+            Content-Type: application/json; charset=UTF-8
+#            Host: api.backhaul.ubtt.cn
+            User-Agent: Dalvik/2.1.0 (Linux; U; Android 10; GLK-AL00 Build/HUAWEIGLK-AL00)
+            User-Agent-Platform: Dalvik/2.1.0 (Linux; U; Android 10; GLK-AL00 Build/HUAWEIGLK-AL00)
+            app-id: $appid
+#            device-brand: HUAWEI
+#            device-model: GLK-AL00
+#            lib_net_work_version: 3.0.1
+#            platform: android
+            qid: ety56789
+            udi: 50852389029b0c86f4169e1af0c39100
+            ver: 1.0.1
+        body:
+            anchor: "100"
+            android_id: 62a9beef4cf69f71
+            current_anchor: "100"
+            device_id: ""
+            http_ua: Dalvik%2F2.1.0+%28Linux%3B+U%3B+Android+10%3B+GLK-AL00+Build%2FHUAWEIGLK-AL00%29
+            idfa: ""
+            imei: ""
+            imei1: ""
+            imei2: ""
+            is_change: "0"
+            is_pull: "0"
+            oaid: 0f43bae1-047f-478a-b622-3c88731f334a
+            web_ua: ""
+      validate:
+        - check: status_code
+          assert: equals
+          expect: 200
+          msg: assert response status code
+        - check: headers."Content-Type"
+          assert: equals
+          expect: text/html; charset=UTF-8
+          msg: assert response header Content-Type

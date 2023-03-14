@@ -1,0 +1,13 @@
+https://httprunner.com/docs/user-guide/enhance-tests/
+执行 hrp startproject 命令，即可初始化指定名称的项目工程。
+hrp startproject demo
+
+转换生成测试用例
+hrp convert .\har\popup.har .\har\popup2.har --to-yaml -d .\testcases
+
+运行接口测试
+hrp run demo/testcases/demo_requests.yml demo/testcases/demo_ref_testcase.yml --gen-html-report
+hrp run .\testcases\reciveReward_test.yaml --gen-html-report -c
+
+运行性能测试
+hrp boom testcases/demo_requests.yml --spawn-count 100 --spawn-rate 10

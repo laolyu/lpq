@@ -1,0 +1,40 @@
+config:
+  name: h5测试
+  headers:
+    User-Agent-Platform: Dalvik/2.1.0 (Linux; U; Android 10; GLK-AL00 Build/HUAWEIGLK-AL00)
+    lib_net_work_version: 3.0.1
+    User-Agent: Dalvik/2.1.0 (Linux; U; Android 10; GLK-AL00 Build/HUAWEIGLK-AL00)
+    Connection: close
+    Content-Type: application/json; charset=UTF-8
+
+teststeps:
+  - name: h5-运动tab
+    request:
+      method: GET
+      url: ${url($is_test,$host,h5)}/lpq/sport
+      params:
+        goindex: "true"
+    validate:
+      - check: status_code
+        assert: equals
+        expect: 200
+        msg: assert response status code
+      - check: headers."Content-Type"
+        assert: equals
+        expect: text/html
+        msg: assert response header Content-Type
+  - name: h5-健康tab
+    request:
+      method: GET
+      url: ${url($is_test,$host,h5)}/lpq/health
+      params:
+        goindex: "true"
+    validate:
+      - check: status_code
+        assert: equals
+        expect: 200
+        msg: assert response status code
+      - check: headers."Content-Type"
+        assert: equals
+        expect: text/html
+        msg: assert response header Content-Type
