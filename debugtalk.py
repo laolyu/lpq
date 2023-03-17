@@ -70,24 +70,6 @@ def teardown_hook_example(name):
     return f"teardown_hook_example: {name}"
 
 
-def get_file_md5(filepath):
-    # 获取文件的md5
-    if not os.path.isfile(filepath):
-        print('文件不存在')
-        return
-    myhash = hashlib.md5()
-    f = open(filepath, "rb")
-    while True:
-        b = f.read(8096)
-        if not b:
-            break
-        myhash.update(b)
-    f.close()
-    print(myhash.hexdigest())
-    print(myhash.hexdigest().upper())
-    return myhash.hexdigest()
-
-
 def url(is_test, host, name):
     if is_test:
         test = 'test-'
@@ -115,5 +97,6 @@ def get_str_md5(oaid, ware_id, imei, tim, udi, DEVICE_SECRET) -> str:
 
 def get_time():
     timestamp = int(time.time() * 1000)  # 将秒数转换为毫秒数
+    timestamp = str(timestamp)  # 将秒数转换为字符串
     # print(timestamp)
     return timestamp

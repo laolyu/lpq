@@ -21,7 +21,6 @@ if __name__ == "__main__":
     funppy.register("concatenate", concatenate)
     funppy.register("setup_hook_example", setup_hook_example)
     funppy.register("teardown_hook_example", teardown_hook_example)
-    funppy.register("get_file_md5", get_file_md5)
     funppy.register("url", url)
     funppy.register("get_str_md5", get_str_md5)
     funppy.register("get_time", get_time)
