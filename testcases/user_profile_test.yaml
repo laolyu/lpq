@@ -15,7 +15,7 @@ teststeps:
             Content-Type: application/x-www-form-urlencoded
             Host: api-lpq.shjiyue.top
             Origin: https://h5-lpq.shjiyue.top
-            User-Agent: Mozilla/5.0 (Linux; Android 10; Pixel Build/QP1A.191005.007.A1; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/108.0.5359.79 Mobile Safari/537.36
+            User-Agent: Mozilla/5.0 (Linux; Android 10; Find Build/QP1A.191005.007.A1; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/108.0.5359.79 Mobile Safari/537.36
             X-Requested-With: com.jy.lpq
             app-id: $appid
             platform: android
@@ -54,7 +54,7 @@ teststeps:
             Content-Type: application/x-www-form-urlencoded
             Host: api-lpq.shjiyue.top
             Origin: https://h5-lpq.shjiyue.top
-            User-Agent: Mozilla/5.0 (Linux; Android 10; Pixel Build/QP1A.191005.007.A1; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/108.0.5359.79 Mobile Safari/537.36
+            User-Agent: Mozilla/5.0 (Linux; Android 10; Find Build/QP1A.191005.007.A1; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/108.0.5359.79 Mobile Safari/537.36
             X-Requested-With: com.jy.lpq
             app-id: $appid
             platform: android

@@ -12,8 +12,8 @@ teststeps:
             Content-Length: "0"
             Content-Type: application/json
             Host: api-lpq.shjiyue.top
-            User-Agent: Dalvik/2.1.0 (Linux; U; Android 10; Pixel Build/QP1A.191005.007.A1)
-            User-Agent-Platform: Dalvik/2.1.0 (Linux; U; Android 10; Pixel Build/QP1A.191005.007.A1)
+            User-Agent: Dalvik/2.1.0 (Linux; U; Android 10; Find Build/QP1A.191005.007.A1)
+            User-Agent-Platform: Dalvik/2.1.0 (Linux; U; Android 10; Find Build/QP1A.191005.007.A1)
             app-id: $appid
             device-brand: OPPO
             device-model: R9s

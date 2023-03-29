@@ -28,8 +28,8 @@ teststeps:
             platform: android
             qid: blpq00004
             udi: ${generate_random_string(32)}
-            user-agent: Dalvik/2.1.0 (Linux; U; Android 10; Pixel Build/QP1A.191005.007.A1)
-            user-agent-platform: Dalvik/2.1.0 (Linux; U; Android 10; Pixel Build/QP1A.191005.007.A1)
+            user-agent: Dalvik/2.1.0 (Linux; U; Android 10; Find Build/QP1A.191005.007.A1)
+            user-agent-platform: Dalvik/2.1.0 (Linux; U; Android 10; Find Build/QP1A.191005.007.A1)
             ver: 1.0.3
         body:
             android_id: ""
@@ -77,15 +77,15 @@ teststeps:
             platform: android
             qid: blpq00004
             udi: ${generate_random_string(32)}
-            user-agent: Dalvik/2.1.0 (Linux; U; Android 10; Pixel Build/QP1A.191005.007.A1)
-            user-agent-platform: Dalvik/2.1.0 (Linux; U; Android 10; Pixel Build/QP1A.191005.007.A1)
+            user-agent: Dalvik/2.1.0 (Linux; U; Android 10; Find Build/QP1A.191005.007.A1)
+            user-agent-platform: Dalvik/2.1.0 (Linux; U; Android 10; Find Build/QP1A.191005.007.A1)
             ver: 1.0.3
         body:
             anchor: "100"
             android_id: ""
             current_anchor: "100"
             device_id: ""
-            http_ua: Dalvik%2F2.1.0+%28Linux%3B+U%3B+Android+10%3B+Pixel+Build%2FQP1A.191005.007.A1%29
+            http_ua: Dalvik%2F2.1.0+%28Linux%3B+U%3B+Android+10%3B+Find+Build%2FQP1A.191005.007.A1%29
             idfa: ""
             imei: ""
             imei1: ""
@@ -93,7 +93,7 @@ teststeps:
             is_change: "1"
             is_pull: "0"
             oaid: $oaid
-            web_ua: Mozilla%2F5.0+%28Linux%3B+Android+10%3B+Pixel+Build%2FQP1A.191005.007.A1%3B+wv%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Version%2F4.0+Chrome%2F108.0.5359.79+Mobile+Safari%2F537.36
+            web_ua: Mozilla%2F5.0+%28Linux%3B+Android+10%3B+Find+Build%2FQP1A.191005.007.A1%3B+wv%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Version%2F4.0+Chrome%2F108.0.5359.79+Mobile+Safari%2F537.36
       validate:
         - check: status_code
           assert: equals

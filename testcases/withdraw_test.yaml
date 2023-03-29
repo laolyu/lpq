@@ -1,5 +1,5 @@
 config:
-  name: 提现
+  name: b88提现
   headers:
     User-Agent-Platform: Dalvik/2.1.0 (Linux; U; Android 10; GLK-AL00 Build/VIVO)
     lib_net_work_version: 3.0.1
@@ -8,15 +8,11 @@ config:
     Content-Type: application/json; charset=UTF-8
     app-id: $appid
   parameters:
-    Bearer: [
-      'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJ1c2VyIiwiZXhwIjoxNjgyNjA5MjU0LCJqdGkiOiIyNTNfNTk5MiIsImlhdCI6MTY4MDAxNzI1NCwibmJmIjoxNjgwMDE3MjU0LCJJc1JlYWwiOiIwIiwiVWRpIjoiYjMwYzk4ZjQ5YmI2YTIxZjE1ZjFhMjJhMzBiNTNmNmMiLCJBcHBJZCI6MjUzLCJVaWQiOjU5OTJ9.0SzVsGywNE0DCr-9KANf4rnAO8zJdvrtygjVNHeuG0U'
-    ]
     ver: [ '1.0.3' ]
-    #    -连接的参数为一行固定,共同参与组合
-#    qid-qid_reg: ${parameterize($file)}
+    Bearer: ${parameterize($file)}
+    qid-qid_reg: ${parameterize($file)} # -连接的参数为一行固定,共同参与组合
   parameters_setting:
-    #    random只随机选取一组参数运行,sequential运行所有排列组合
-    pick_order: unique
+    pick_order: unique #random只随机选取一组参数运行,sequential运行所有排列组合
     strategies:
       Bearer:
         name: Bearer
@@ -24,9 +20,12 @@ config:
     #      ver:
     #        name: ver
     #        pick_order: sequential
-    limit: 1
+    limit: 22
   variables:
-    file: C:\pose\first\hyd\b035.csv
+    udi: ${generate_random_string(32)}
+    ware_id: ${generate_random_string(16)}
+    oaid: ${get_oaid()}
+    file: C:\pose\first\lpq\b088.csv
 
 teststeps:
   - name: get info from device
@@ -43,7 +42,7 @@ teststeps:
       - ware_id
   - name: 红包提现申请0.30
     variables:
-      n_secs: ${get_random(3,5)}
+      n_secs: ${get_random(300,600)}
       do: ${sleep($n_secs)}
       time: ${get_time()}
     request:

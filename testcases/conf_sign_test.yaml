@@ -16,7 +16,7 @@ teststeps:
             Content-Type: application/json; charset=utf-8
             Host: api-lpq.shjiyue.top
             User-Agent: okhttp/3.14.9
-            User-Agent-Platform: Dalvik/2.1.0 (Linux; U; Android 10; Pixel Build/QP1A.191005.007.A1)
+            User-Agent-Platform: Dalvik/2.1.0 (Linux; U; Android 10; Find Build/QP1A.191005.007.A1)
             app-id: $appid
             platform: android
             qid: blpq00004
@@ -59,7 +59,7 @@ teststeps:
             Content-Type: application/json; charset=utf-8
             Host: api-lpq.shjiyue.top
             User-Agent: okhttp/3.14.9
-            User-Agent-Platform: Dalvik/2.1.0 (Linux; U; Android 10; Pixel Build/QP1A.191005.007.A1)
+            User-Agent-Platform: Dalvik/2.1.0 (Linux; U; Android 10; Find Build/QP1A.191005.007.A1)
             app-id: $appid
             platform: android
             qid: blpq00004
@@ -102,7 +102,7 @@ teststeps:
             Content-Type: application/json; charset=utf-8
             Host: api-lpq.shjiyue.top
             User-Agent: okhttp/3.14.9
-            User-Agent-Platform: Dalvik/2.1.0 (Linux; U; Android 10; Pixel Build/QP1A.191005.007.A1)
+            User-Agent-Platform: Dalvik/2.1.0 (Linux; U; Android 10; Find Build/QP1A.191005.007.A1)
             app-id: $appid
             platform: android
             qid: blpq00004

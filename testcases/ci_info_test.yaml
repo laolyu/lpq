@@ -25,7 +25,7 @@ teststeps:
         headers:
             device-brand: OPPO
             device_brand: oppo
-            device_model: Pixel
+            device_model: Find
             platform: android
             qid: blpq00102
             udi: b30c98f49bb6a21f15f1a22a30b53f6c
