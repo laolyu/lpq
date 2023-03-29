@@ -1,0 +1,50 @@
+config:
+    name: testcase description
+    headers:
+      User-Agent-Platform: Dalvik/2.1.0 (Linux; U; Android 10; GLK-AL00 Build/VIVO)
+      lib_net_work_version: 3.0.1
+      User-Agent: Dalvik/2.1.0 (Linux; U; Android 10; GLK-AL00 Build/VIVO1934A)
+      Connection: close
+      Content-Type: application/json; charset=UTF-8
+      Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJ1c2VyIiwiZXhwIjoxNjgyNjA5MjU0LCJqdGkiOiIyNTNfNTk5MiIsImlhdCI6MTY4MDAxNzI1NCwibmJmIjoxNjgwMDE3MjU0LCJJc1JlYWwiOiIwIiwiVWRpIjoiYjMwYzk4ZjQ5YmI2YTIxZjE1ZjFhMjJhMzBiNTNmNmMiLCJBcHBJZCI6MjUzLCJVaWQiOjU5OTJ9.0SzVsGywNE0DCr-9KANf4rnAO8zJdvrtygjVNHeuG0U
+      app-id: $appid
+    variables:
+      udi: ${generate_random_string(32)}
+      ware_id: ${generate_random_string(16)}
+      oaid: ${get_oaid()}
+
+teststeps:
+    - name: ""
+      variables:
+        time: ${get_time()}
+      request:
+        method: POST
+        url: ${url($is_test,$host,api)}/ciCommon/ci/info
+        params:
+            sign: ${get_str_md5($oaid, $ware_id, $imei, $time, $udi, $DEVICE_SECRET)}
+        headers:
+            device-brand: OPPO
+            device_brand: oppo
+            device_model: Pixel
+            platform: android
+            qid: blpq00102
+            udi: b30c98f49bb6a21f15f1a22a30b53f6c
+            ver: 1.0.3
+        body: {}
+      validate:
+        - check: status_code
+          assert: equals
+          expect: 200
+          msg: assert response status code
+        - check: headers."Content-Type"
+          assert: equals
+          expect: application/json; charset=utf-8
+          msg: assert response header Content-Type
+        - check: body.error_code
+          assert: equals
+          expect: 0
+          msg: assert response body error_code
+        - check: body.error_message
+          assert: equals
+          expect: ""
+          msg: assert response body error_message

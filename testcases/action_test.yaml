@@ -1,33 +1,36 @@
 config:
-    name: 回传上报
-    headers:
-      User-Agent-Platform: Dalvik/2.1.0 (Linux; U; Android 10; GLK-AL00 Build/HUAWEIGLK-AL00)
-      lib_net_work_version: 3.0.1
-      User-Agent: Dalvik/2.1.0 (Linux; U; Android 10; GLK-AL00 Build/HUAWEIGLK-AL00)
-      Connection: close
-      Content-Type: application/json; charset=UTF-8
+  name:
+  headers:
+    User-Agent-Platform: Dalvik/2.1.0 (Linux; U; Android 10; GLK-AL00 Build/VIVO)
+    lib_net_work_version: 3.0.1
+    User-Agent: Dalvik/2.1.0 (Linux; U; Android 10; GLK-AL00 Build/VIVO1934A)
+    Connection: close
+    Content-Type: application/json; charset=UTF-8
+    app-id: $appid
 teststeps:
-    - name: 次留回传
+    - name: ""
       request:
         method: POST
-        url: $url_action/action/stay
+        url: https://api.backhaul.ubtt.cn/463ffcf8cb9cffa8/action/stay
         headers:
-#            Accept-Encoding: gzip
-#            ClientUpdateTime: "1678343657506"
-#            Connection: close
-#            Content-Length: "134"
-            Content-Type: application/json; charset=UTF-8
-#            Host: api.backhaul.ubtt.cn
-            User-Agent: Dalvik/2.1.0 (Linux; U; Android 10; GLK-AL00 Build/HUAWEIGLK-AL00)
-            User-Agent-Platform: Dalvik/2.1.0 (Linux; U; Android 10; GLK-AL00 Build/HUAWEIGLK-AL00)
+            :authority: api.backhaul.ubtt.cn
+            :method: POST
+            :path: /463ffcf8cb9cffa8/action/stay
+            :scheme: https
+            accept-encoding: gzip
             app-id: $appid
-#            device-brand: HUAWEI
-#            device-model: GLK-AL00
-#            lib_net_work_version: 3.0.1
-#            platform: android
-            qid: ety00044
-            udi: 50852389029b0c86f4169e1af0c39100
-            ver: 1.0.1
+            clientupdatetime: "1680016201437"
+            content-length: "139"
+            content-type: application/json; charset=UTF-8
+            device-brand: OPPO
+            device-model: R9s
+            lib_net_work_version: 3.0.1
+            platform: android
+            qid: blpq00004
+            udi: ${generate_random_string(32)}
+            user-agent: Dalvik/2.1.0 (Linux; U; Android 10; Pixel Build/QP1A.191005.007.A1)
+            user-agent-platform: Dalvik/2.1.0 (Linux; U; Android 10; Pixel Build/QP1A.191005.007.A1)
+            ver: 1.0.3
         body:
             android_id: ""
             device_id: ""
@@ -36,7 +39,7 @@ teststeps:
             imei1: ""
             imei2: ""
             is_pull: "1"
-            oaid: 0f43bae1-047f-478a-b622-3c88731f334a
+            oaid: $oaid
       validate:
         - check: status_code
           assert: equals
@@ -44,43 +47,53 @@ teststeps:
           msg: assert response status code
         - check: headers."Content-Type"
           assert: equals
-          expect: text/html; charset=UTF-8
+          expect: application/json
           msg: assert response header Content-Type
-    - name: 激活回传
+        - check: body.code
+          assert: equals
+          expect: 0
+          msg: assert response body code
+        - check: body.msg
+          assert: equals
+          expect: ""
+          msg: assert response body msg
+    - name: ""
       request:
         method: POST
-        url: $url_action/action/start_app
+        url: https://api.backhaul.ubtt.cn/463ffcf8cb9cffa8/action/start_app
         headers:
-#            Accept-Encoding: gzip
-#            ClientUpdateTime: "1678343657683"
-#            Connection: close
-#            Content-Length: "309"
-            Content-Type: application/json; charset=UTF-8
-#            Host: api.backhaul.ubtt.cn
-            User-Agent: Dalvik/2.1.0 (Linux; U; Android 10; GLK-AL00 Build/HUAWEIGLK-AL00)
-            User-Agent-Platform: Dalvik/2.1.0 (Linux; U; Android 10; GLK-AL00 Build/HUAWEIGLK-AL00)
+            :authority: api.backhaul.ubtt.cn
+            :method: POST
+            :path: /463ffcf8cb9cffa8/action/start_app
+            :scheme: https
+            accept-encoding: gzip
             app-id: $appid
-#            device-brand: HUAWEI
-#            device-model: GLK-AL00
-#            lib_net_work_version: 3.0.1
-#            platform: android
-            qid: ety56789
-            udi: 50852389029b0c86f4169e1af0c39100
-            ver: 1.0.1
+            clientupdatetime: "1680016201962"
+            content-length: "487"
+            content-type: application/json; charset=UTF-8
+            device-brand: OPPO
+            device-model: R9s
+            lib_net_work_version: 3.0.1
+            platform: android
+            qid: blpq00004
+            udi: ${generate_random_string(32)}
+            user-agent: Dalvik/2.1.0 (Linux; U; Android 10; Pixel Build/QP1A.191005.007.A1)
+            user-agent-platform: Dalvik/2.1.0 (Linux; U; Android 10; Pixel Build/QP1A.191005.007.A1)
+            ver: 1.0.3
         body:
             anchor: "100"
-            android_id: 62a9beef4cf69f71
+            android_id: ""
             current_anchor: "100"
             device_id: ""
-            http_ua: Dalvik%2F2.1.0+%28Linux%3B+U%3B+Android+10%3B+GLK-AL00+Build%2FHUAWEIGLK-AL00%29
+            http_ua: Dalvik%2F2.1.0+%28Linux%3B+U%3B+Android+10%3B+Pixel+Build%2FQP1A.191005.007.A1%29
             idfa: ""
             imei: ""
             imei1: ""
             imei2: ""
-            is_change: "0"
+            is_change: "1"
             is_pull: "0"
-            oaid: 0f43bae1-047f-478a-b622-3c88731f334a
-            web_ua: ""
+            oaid: $oaid
+            web_ua: Mozilla%2F5.0+%28Linux%3B+Android+10%3B+Pixel+Build%2FQP1A.191005.007.A1%3B+wv%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Version%2F4.0+Chrome%2F108.0.5359.79+Mobile+Safari%2F537.36
       validate:
         - check: status_code
           assert: equals
@@ -88,5 +101,13 @@ teststeps:
           msg: assert response status code
         - check: headers."Content-Type"
           assert: equals
-          expect: text/html; charset=UTF-8
+          expect: application/json
           msg: assert response header Content-Type
+        - check: body.code
+          assert: equals
+          expect: 0
+          msg: assert response body code
+        - check: body.msg
+          assert: equals
+          expect: ""
+          msg: assert response body msg

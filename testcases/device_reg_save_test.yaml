@@ -1,0 +1,110 @@
+config:
+    name: testcase description
+    headers:
+      User-Agent-Platform: Dalvik/2.1.0 (Linux; U; Android 10; GLK-AL00 Build/VIVO)
+      lib_net_work_version: 3.0.1
+      User-Agent: Dalvik/2.1.0 (Linux; U; Android 10; GLK-AL00 Build/VIVO1934A)
+      Connection: close
+      Content-Type: application/json; charset=UTF-8
+      app-id: $appid
+teststeps:
+    - name: ""
+      variables:
+        time: ${get_time()}
+      request:
+        method: POST
+        url: ${url($is_test,$host,api)}/common/regist_device_v3
+        headers:
+            device-brand: OPPO
+            device-model: R9s
+            platform: android
+            qid: blpq00004
+            udi: ${generate_random_string(32)}
+            ver: 1.0.3
+        body:
+            device_id: ""
+            imei: ""
+            imei1: ""
+            imei2: ""
+            installDate: "2023-03-25 12:18:12"
+            mac: ""
+            oaid: $oaid
+            sign: ${get_str_md5($oaid, $ware_id, $imei, $time, $udi, $DEVICE_SECRET)}
+            time: $time
+            type: "2"
+            udi: ${generate_random_string(32)}
+            ware_id: ""
+      validate:
+        - check: status_code
+          assert: equals
+          expect: 200
+          msg: assert response status code
+        - check: headers."Content-Type"
+          assert: equals
+          expect: application/json; charset=utf-8
+          msg: assert response header Content-Type
+        - check: body.error_code
+          assert: equals
+          expect: 0
+          msg: assert response body error_code
+        - check: body.error_message
+          assert: equals
+          expect: ""
+          msg: assert response body error_message
+        - check: body.meta
+          assert: equals
+          expect: ""
+          msg: assert response body meta
+    - name: ""
+      request:
+        method: POST
+        url: ${url($is_test,$host,api)}/common/save_device_v3
+        headers:
+            device-brand: OPPO
+            device-model: R9s
+            lib_net_work_version: 3.0.1
+            platform: android
+            qid: blpq00004
+            udi: ${generate_random_string(32)}
+            ver: 1.0.3
+        body:
+            android_version: "10"
+            brand: oppo
+            cpu: "0"
+            cpu_cores: "4"
+            device_id: ""
+            display_version: QP1A.191005.007.A1
+            imei: ""
+            imei1: ""
+            imei2: ""
+            is_phone: "true"
+            is_root: "true"
+            model: Pixel
+            oaid: $oaid
+            per_tongzhi: "false"
+            psuedo_unique_id: "838858665828243"
+            ratio: 1080*1878
+            sdk_version_code: "29"
+            sdk_version_name: "10"
+            sim_operator: ""
+            supported_abis: arm64-v8a,armeabi-v7a,armeabi
+            udi: ${generate_random_string(32)}
+            ware_id: ""
+            wifi_essid: ""
+      validate:
+        - check: status_code
+          assert: equals
+          expect: 200
+          msg: assert response status code
+        - check: headers."Content-Type"
+          assert: equals
+          expect: application/json; charset=utf-8
+          msg: assert response header Content-Type
+        - check: body.error_code
+          assert: equals
+          expect: 0
+          msg: assert response body error_code
+        - check: body.error_message
+          assert: equals
+          expect:
+          msg: assert response body error_message

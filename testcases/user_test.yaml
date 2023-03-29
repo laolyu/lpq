@@ -1,0 +1,89 @@
+config:
+    name: testcase description
+teststeps:
+    - name: ""
+      request:
+        method: POST
+        url: ${url($is_test,$host,api)}/common/user
+        params:
+            sign: ${get_str_md5($oaid, $ware_id, $imei, $time, $udi, $DEVICE_SECRET)}
+        headers:
+            Accept-Encoding: gzip
+            Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJ1c2VyIiwiZXhwIjoxNjgyNjA5NTkwLCJqdGkiOiIyNTNfNTk5MiIsImlhdCI6MTY4MDAxNzU5MCwibmJmIjoxNjgwMDE3NTkwLCJJc1JlYWwiOiIxIiwiVWRpIjoiYjMwYzk4ZjQ5YmI2YTIxZjE1ZjFhMjJhMzBiNTNmNmMiLCJBcHBJZCI6MjUzLCJVaWQiOjU5OTJ9.XbOv7ZxRgR_V1CEYjInh11wylqXTVbciqR4T_44Lc-I
+            ClientUpdateTime: "1680017716748"
+            Connection: keep-alive
+            Content-Length: "2"
+            Content-Type: application/json; charset=utf-8
+            Host: api-lpq.shjiyue.top
+            User-Agent: okhttp/3.14.9
+            User-Agent-Platform: Dalvik/2.1.0 (Linux; U; Android 10; Pixel Build/QP1A.191005.007.A1)
+            app-id: $appid
+            device-brand: OPPO
+            device_brand: oppo
+            device_model: Pixel
+            platform: android
+            qid: blpq00102
+            udi: b30c98f49bb6a21f15f1a22a30b53f6c
+            ver: 1.0.3
+        body: {}
+      validate:
+        - check: status_code
+          assert: equals
+          expect: 200
+          msg: assert response status code
+        - check: headers."Content-Type"
+          assert: equals
+          expect: application/json; charset=utf-8
+          msg: assert response header Content-Type
+        - check: body.error_code
+          assert: equals
+          expect: 0
+          msg: assert response body error_code
+        - check: body.error_message
+          assert: equals
+          expect: ""
+          msg: assert response body error_message
+    - name: ""
+      request:
+        method: GET
+        url: ${url($is_test,$host,api)}/common/getContactQQ
+        params:
+            sign: ${get_str_md5($oaid, $ware_id, $imei, $time, $udi, $DEVICE_SECRET)}
+        headers:
+            Accept-Encoding: gzip
+            Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJ1c2VyIiwiZXhwIjoxNjgyNjA5NTkwLCJqdGkiOiIyNTNfNTk5MiIsImlhdCI6MTY4MDAxNzU5MCwibmJmIjoxNjgwMDE3NTkwLCJJc1JlYWwiOiIxIiwiVWRpIjoiYjMwYzk4ZjQ5YmI2YTIxZjE1ZjFhMjJhMzBiNTNmNmMiLCJBcHBJZCI6MjUzLCJVaWQiOjU5OTJ9.XbOv7ZxRgR_V1CEYjInh11wylqXTVbciqR4T_44Lc-I
+            ClientUpdateTime: "1680017843359"
+            Connection: keep-alive
+            Content-Type: application/json
+            Host: api-lpq.shjiyue.top
+            User-Agent: okhttp/3.14.9
+            User-Agent-Platform: Dalvik/2.1.0 (Linux; U; Android 10; Pixel Build/QP1A.191005.007.A1)
+            app-id: $appid
+            device-brand: OPPO
+            device_brand: oppo
+            device_model: Pixel
+            platform: android
+            qid: blpq00102
+            udi: b30c98f49bb6a21f15f1a22a30b53f6c
+            ver: 1.0.3
+      validate:
+        - check: status_code
+          assert: equals
+          expect: 200
+          msg: assert response status code
+        - check: headers."Content-Type"
+          assert: equals
+          expect: application/json; charset=utf-8
+          msg: assert response header Content-Type
+        - check: body.data
+          assert: equals
+          expect: "1328814847"
+          msg: assert response body data
+        - check: body.error_code
+          assert: equals
+          expect: 0
+          msg: assert response body error_code
+        - check: body.error_message
+          assert: equals
+          expect: ""
+          msg: assert response body error_message

@@ -1,0 +1,20 @@
+config:
+    name: testcase description
+teststeps:
+    - name: ""
+      request:
+        method: POST
+        url: http://new-appreport-lpq.shjiyue.top/
+        headers:
+            Accept-Encoding: gzip
+            Connection: keep-alive
+            Content-Length: "644"
+            Content-Type: text/plain; charset=utf-8
+            Host: new-appreport-lpq.shjiyue.top
+            User-Agent: okhttp/3.14.9
+        body: AAEQAAAAAAAA/QcfuYgjb6rEnSiDmsSQZ0B8d/xxg7BKDdyp0ujcZZZVtV0oUa/z71/5wfKJ18PUWBmClydRVn6vv+YSQP/GtjqJSdGcveZ0DeuQzwP3gDPPTrxWuN29v7xvdCkjdMiCa0UqJ00almnEf5ef3oRCPnJo/ecUR+8UQ502K0dz3ZeGkwppMJac3rWbo9dQ4h1hbtB3RX4fErqSoJgwkAkEpmD8p0UKf7O+W/YA7OzF6BhCmr0jtHT7Gmx/z7JYQBIMSBQO956nY7Rj0irNq5kKpAGgkOlwrrQF4Y1Fo056HSUPC+ZPiKQh3pAQY5jccckd7iQAVRZ2WHu/4nV2PMOvHJPHitTnQF5I0ju1a7CXlG/if8Yq0bv+sOkcRUQ/95+hS4zx8mvl8Dlw/BUXRn17MbTEFNeRl2Evi4+fBnG50oqoG2hW/mwjqHNHIcFkuwj7tWyCfvA/1nSWWHpcg/3P0mHfFObKG/YZnI/epBW5V2NKwsv93XLRupC7FxOnVZ8yPfl7/O59BBtLUvlJVYU0qAAWIJlvb2arDUHdhGRqgHiiD/GFr39zWhWkoU4rlLbjGNb1BQoKSHDadzsZ0K3Wf1Fg8M9fI9Uane1Gjvb9FiMv5nPyhUz7ORsY
+      validate:
+        - check: status_code
+          assert: equals
+          expect: 200
+          msg: assert response status code

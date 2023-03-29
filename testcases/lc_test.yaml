@@ -1,0 +1,38 @@
+config:
+    name: testcase description
+teststeps:
+    - name: ""
+      request:
+        method: POST
+        url: https://bk.bkyth95.top/common/lc
+        headers:
+            Accept-Encoding: gzip
+            Connection: Keep-Alive
+            Content-Length: "71"
+            Content-Type: application/json; charset=utf-8
+            Host: bk.bkyth95.top
+            User-Agent: okhttp/3.14.9
+            app-id: $appid
+            fixed_qid: blpq00004
+            qid: blpq00004
+            ver: 1.0.3
+        body:
+            request_id: d0b56593-ce76-4008-aabc-57da9496e1fd
+            system: google
+      validate:
+        - check: status_code
+          assert: equals
+          expect: 200
+          msg: assert response status code
+        - check: headers."Content-Type"
+          assert: equals
+          expect: application/json; charset=utf-8
+          msg: assert response header Content-Type
+        - check: body.error_code
+          assert: equals
+          expect: 0
+          msg: assert response body error_code
+        - check: body.error_message
+          assert: equals
+          expect: ""
+          msg: assert response body error_message

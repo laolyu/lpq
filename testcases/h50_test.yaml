@@ -1,0 +1,51 @@
+config:
+    name: testcase description
+teststeps:
+    - name: ""
+      request:
+        method: GET
+        url: http://test-h5-lpq.shjiyue.top/lpq/sport
+        params:
+            goindex: "true"
+        headers:
+            Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/sign: ${get_str_md5($oaid, $ware_id, $imei, $time, $udi, $DEVICE_SECRET)}
+            Accept-Encoding: gzip, deflate
+            Accept-Language: zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7
+            Connection: keep-alive
+            Host: test-h5-lpq.shjiyue.top
+            Upgrade-Insecure-Requests: "1"
+            User-Agent: Mozilla/5.0 (Linux; Android 10; GLK-AL00 Build/HUAWEIGLK-AL00; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/88.0.4324.93 Mobile Safari/537.36
+            X-Requested-With: com.jy.lpq
+      validate:
+        - check: status_code
+          assert: equals
+          expect: 200
+          msg: assert response status code
+        - check: headers."Content-Type"
+          assert: equals
+          expect: text/html
+          msg: assert response header Content-Type
+    - name: ""
+      request:
+        method: GET
+        url: http://test-h5-lpq.shjiyue.top/lpq/health
+        params:
+            goindex: "true"
+        headers:
+            Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/sign: ${get_str_md5($oaid, $ware_id, $imei, $time, $udi, $DEVICE_SECRET)}
+            Accept-Encoding: gzip, deflate
+            Accept-Language: zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7
+            Connection: keep-alive
+            Host: test-h5-lpq.shjiyue.top
+            Upgrade-Insecure-Requests: "1"
+            User-Agent: Mozilla/5.0 (Linux; Android 10; GLK-AL00 Build/HUAWEIGLK-AL00; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/88.0.4324.93 Mobile Safari/537.36
+            X-Requested-With: com.jy.lpq
+      validate:
+        - check: status_code
+          assert: equals
+          expect: 200
+          msg: assert response status code
+        - check: headers."Content-Type"
+          assert: equals
+          expect: text/html
+          msg: assert response header Content-Type

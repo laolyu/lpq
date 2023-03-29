@@ -1,0 +1,134 @@
+config:
+    name: testcase description
+teststeps:
+    - name: ""
+      request:
+        method: POST
+        url: ${url($is_test,$host,api)}/common/conf
+        params:
+            sign: ${get_str_md5($oaid, $ware_id, $imei, $time, $udi, $DEVICE_SECRET)}
+        headers:
+            Accept-Encoding: gzip
+            Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJ1c2VyIiwiZXhwIjoxNjgyNjA4MjA2LCJqdGkiOiIyNTNfNTk4OCIsImlhdCI6MTY4MDAxNjIwNiwibmJmIjoxNjgwMDE2MjA2LCJJc1JlYWwiOiIwIiwiVWRpIjoiYWQzYWQ5MDY3NDkwOWU1YWViZDNhODlmNGIyMzFhMzQiLCJBcHBJZCI6MjUzLCJVaWQiOjU5ODh9.Gc9lr2I2rY2E_bf7ZKqHxMhpB371wJaEB9R03cMaKOQ
+            ClientUpdateTime: "1680016656607"
+            Connection: keep-alive
+            Content-Length: "2"
+            Content-Type: application/json; charset=utf-8
+            Host: api-lpq.shjiyue.top
+            User-Agent: okhttp/3.14.9
+            User-Agent-Platform: Dalvik/2.1.0 (Linux; U; Android 10; Pixel Build/QP1A.191005.007.A1)
+            app-id: $appid
+            platform: android
+            qid: blpq00004
+            udi: ${generate_random_string(32)}
+            ver: 1.0.3
+        body: {}
+      validate:
+        - check: status_code
+          assert: equals
+          expect: 200
+          msg: assert response status code
+        - check: headers."Content-Type"
+          assert: equals
+          expect: application/json; charset=utf-8
+          msg: assert response header Content-Type
+        - check: body.error_code
+          assert: equals
+          expect: 0
+          msg: assert response body error_code
+        - check: body.error_message
+          assert: equals
+          expect: ""
+          msg: assert response body error_message
+        - check: body.meta
+          assert: equals
+          expect: ""
+          msg: assert response body meta
+    - name: ""
+      request:
+        method: POST
+        url: ${url($is_test,$host,api)}/common/refresh
+        params:
+            sign: ${get_str_md5($oaid, $ware_id, $imei, $time, $udi, $DEVICE_SECRET)}
+        headers:
+            Accept-Encoding: gzip
+            Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJ1c2VyIiwiZXhwIjoxNjgyNjA4MjA2LCJqdGkiOiIyNTNfNTk4OCIsImlhdCI6MTY4MDAxNjIwNiwibmJmIjoxNjgwMDE2MjA2LCJJc1JlYWwiOiIwIiwiVWRpIjoiYWQzYWQ5MDY3NDkwOWU1YWViZDNhODlmNGIyMzFhMzQiLCJBcHBJZCI6MjUzLCJVaWQiOjU5ODh9.Gc9lr2I2rY2E_bf7ZKqHxMhpB371wJaEB9R03cMaKOQ
+            ClientUpdateTime: "1680016690939"
+            Connection: keep-alive
+            Content-Length: "2"
+            Content-Type: application/json; charset=utf-8
+            Host: api-lpq.shjiyue.top
+            User-Agent: okhttp/3.14.9
+            User-Agent-Platform: Dalvik/2.1.0 (Linux; U; Android 10; Pixel Build/QP1A.191005.007.A1)
+            app-id: $appid
+            platform: android
+            qid: blpq00004
+            udi: ${generate_random_string(32)}
+            ver: 1.0.3
+        body: {}
+      validate:
+        - check: status_code
+          assert: equals
+          expect: 200
+          msg: assert response status code
+        - check: headers."Content-Type"
+          assert: equals
+          expect: application/json; charset=utf-8
+          msg: assert response header Content-Type
+        - check: body.error_code
+          assert: equals
+          expect: 0
+          msg: assert response body error_code
+        - check: body.error_message
+          assert: equals
+          expect: ""
+          msg: assert response body error_message
+        - check: body.meta
+          assert: equals
+          expect: ""
+          msg: assert response body meta
+    - name: ""
+      request:
+        method: POST
+        url: ${url($is_test,$host,api)}/common/jp
+        params:
+            sign: ${get_str_md5($oaid, $ware_id, $imei, $time, $udi, $DEVICE_SECRET)}
+        headers:
+            Accept-Encoding: gzip
+            Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJ1c2VyIiwiZXhwIjoxNjgyNjA4NjkxLCJqdGkiOiIyNTNfNTk4OCIsImlhdCI6MTY4MDAxNjY5MSwibmJmIjoxNjgwMDE2NjkxLCJJc1JlYWwiOiIwIiwiVWRpIjoiYWQzYWQ5MDY3NDkwOWU1YWViZDNhODlmNGIyMzFhMzQiLCJBcHBJZCI6MjUzLCJVaWQiOjU5ODh9.i_QLFC6g6Sm4X6nRov5ABbUw6IdpnRdz12_XRAvqoow
+            ClientUpdateTime: "1680016710984"
+            Connection: keep-alive
+            Content-Length: "33"
+            Content-Type: application/json; charset=utf-8
+            Host: api-lpq.shjiyue.top
+            User-Agent: okhttp/3.14.9
+            User-Agent-Platform: Dalvik/2.1.0 (Linux; U; Android 10; Pixel Build/QP1A.191005.007.A1)
+            app-id: $appid
+            platform: android
+            qid: blpq00004
+            udi: ${generate_random_string(32)}
+            ver: 1.0.3
+        body:
+            qid: blpq00004
+            ver: 1.0.3
+      validate:
+        - check: status_code
+          assert: equals
+          expect: 200
+          msg: assert response status code
+        - check: headers."Content-Type"
+          assert: equals
+          expect: application/json; charset=utf-8
+          msg: assert response header Content-Type
+        - check: body.data
+          assert: equals
+          expect: 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
+          msg: assert response body data
+        - check: body.error_code
+          assert: equals
+          expect: 0
+          msg: assert response body error_code
+        - check: body.error_message
+          assert: equals
+          expect: ""
+          msg: assert response body error_message

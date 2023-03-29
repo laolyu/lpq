@@ -1,0 +1,41 @@
+config:
+    name: testcase description
+teststeps:
+    - name: ""
+      request:
+        method: POST
+        url: ${url($is_test,$host,api)}/common/a/get_no_report_list
+        headers:
+            Accept-Encoding: gzip
+            ClientUpdateTime: "1680017231699"
+            Connection: close
+            Content-Length: "0"
+            Content-Type: application/json
+            Host: api-lpq.shjiyue.top
+            User-Agent: Dalvik/2.1.0 (Linux; U; Android 10; Pixel Build/QP1A.191005.007.A1)
+            User-Agent-Platform: Dalvik/2.1.0 (Linux; U; Android 10; Pixel Build/QP1A.191005.007.A1)
+            app-id: $appid
+            device-brand: OPPO
+            device-model: R9s
+            lib_net_work_version: 3.0.1
+            platform: android
+            qid: blpq00004
+            udi: ""
+            ver: 1.0.3
+      validate:
+        - check: status_code
+          assert: equals
+          expect: 200
+          msg: assert response status code
+        - check: headers."Content-Type"
+          assert: equals
+          expect: application/json; charset=utf-8
+          msg: assert response header Content-Type
+        - check: body.error_code
+          assert: equals
+          expect: 0
+          msg: assert response body error_code
+        - check: body.error_message
+          assert: equals
+          expect: ""
+          msg: assert response body error_message

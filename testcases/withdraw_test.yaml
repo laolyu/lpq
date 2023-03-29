@@ -1,0 +1,75 @@
+config:
+  name: 提现
+  headers:
+    User-Agent-Platform: Dalvik/2.1.0 (Linux; U; Android 10; GLK-AL00 Build/VIVO)
+    lib_net_work_version: 3.0.1
+    User-Agent: Dalvik/2.1.0 (Linux; U; Android 10; GLK-AL00 Build/VIVO1934A)
+    Connection: close
+    Content-Type: application/json; charset=UTF-8
+    app-id: $appid
+  parameters:
+    Bearer: [
+      'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJ1c2VyIiwiZXhwIjoxNjgyNjA5MjU0LCJqdGkiOiIyNTNfNTk5MiIsImlhdCI6MTY4MDAxNzI1NCwibmJmIjoxNjgwMDE3MjU0LCJJc1JlYWwiOiIwIiwiVWRpIjoiYjMwYzk4ZjQ5YmI2YTIxZjE1ZjFhMjJhMzBiNTNmNmMiLCJBcHBJZCI6MjUzLCJVaWQiOjU5OTJ9.0SzVsGywNE0DCr-9KANf4rnAO8zJdvrtygjVNHeuG0U'
+    ]
+    ver: [ '1.0.3' ]
+    #    -连接的参数为一行固定,共同参与组合
+#    qid-qid_reg: ${parameterize($file)}
+  parameters_setting:
+    #    random只随机选取一组参数运行,sequential运行所有排列组合
+    pick_order: unique
+    strategies:
+      Bearer:
+        name: Bearer
+        pick_order: sequential
+    #      ver:
+    #        name: ver
+    #        pick_order: sequential
+    limit: 1
+  variables:
+    file: C:\pose\first\hyd\b035.csv
+
+teststeps:
+  - name: get info from device
+    variables:
+      udi: ${generate_random_string(32)}
+      ware_id: ${generate_random_string(16)}
+      oaid: ${get_oaid()}
+    testcase: testcases/device_reg_save_test.yaml
+    export:
+      - qid
+      - udi
+      - ver
+      - oaid
+      - ware_id
+  - name: 红包提现申请0.30
+    variables:
+      n_secs: ${get_random(3,5)}
+      do: ${sleep($n_secs)}
+      time: ${get_time()}
+    request:
+      method: POST
+      url: ${url($is_test,$host,api)}/ciCommon/red_ci/withdraw/apply
+      params:
+        sign: ${get_str_md5($oaid, $ware_id, $imei, $time, $udi, $DEVICE_SECRET)}
+      headers:
+        Authorization: $Bearer
+        #        app-id: $appid
+        platform: android
+        qid: $qid
+        udi: $udi
+        ver: $ver
+      body:
+        amount: 30
+        imei: ""
+        oaid: $oaid
+        token: ""
+        type: 1
+    validate:
+      - check: status_code
+        assert: equals
+        expect: 200
+        msg: assert response status code
+      - check: body.error_code
+        assert: equals
+        expect: 0
+        msg: assert response body error_code

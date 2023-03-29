@@ -24,4 +24,8 @@ if __name__ == "__main__":
     funppy.register("url", url)
     funppy.register("get_str_md5", get_str_md5)
     funppy.register("get_time", get_time)
+    funppy.register("get_token", get_token)
+    funppy.register("get_random", get_random)
+    funppy.register("generate_random_string", generate_random_string)
+    funppy.register("get_oaid", get_oaid)
     funppy.serve()

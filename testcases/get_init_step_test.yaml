@@ -1,0 +1,42 @@
+config:
+    name: testcase description
+teststeps:
+    - name: ""
+      request:
+        method: POST
+        url: ${url($is_test,$host,api)}/walk/step/getInitStep
+        params:
+            sign: ${get_str_md5($oaid, $ware_id, $imei, $time, $udi, $DEVICE_SECRET)}
+        headers:
+            Accept-Encoding: gzip
+            Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJ1c2VyIiwiZXhwIjoxNjgyNjA4NjkxLCJqdGkiOiIyNTNfNTk4OCIsImlhdCI6MTY4MDAxNjY5MSwibmJmIjoxNjgwMDE2NjkxLCJJc1JlYWwiOiIwIiwiVWRpIjoiYWQzYWQ5MDY3NDkwOWU1YWViZDNhODlmNGIyMzFhMzQiLCJBcHBJZCI6MjUzLCJVaWQiOjU5ODh9.i_QLFC6g6Sm4X6nRov5ABbUw6IdpnRdz12_XRAvqoow
+            ClientUpdateTime: "1680016691402"
+            Connection: keep-alive
+            Content-Length: "2"
+            Content-Type: application/json; charset=utf-8
+            Host: api-lpq.shjiyue.top
+            User-Agent: okhttp/3.14.9
+            User-Agent-Platform: Dalvik/2.1.0 (Linux; U; Android 10; Pixel Build/QP1A.191005.007.A1)
+            app-id: $appid
+            platform: android
+            qid: blpq00004
+            udi: ${generate_random_string(32)}
+            ver: 1.0.3
+        body: {}
+      validate:
+        - check: status_code
+          assert: equals
+          expect: 200
+          msg: assert response status code
+        - check: headers."Content-Type"
+          assert: equals
+          expect: application/json; charset=utf-8
+          msg: assert response header Content-Type
+        - check: body.error_code
+          assert: equals
+          expect: 0
+          msg: assert response body error_code
+        - check: body.error_message
+          assert: equals
+          expect: ""
+          msg: assert response body error_message
