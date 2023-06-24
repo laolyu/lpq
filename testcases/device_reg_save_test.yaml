@@ -40,7 +40,7 @@ teststeps:
         device-brand: OPPO
         device-model: R9s
         platform: android
-        qid: qid_reg
+        qid: $qid_reg
         udi: $udi
         ver: 1.0.3
       body:

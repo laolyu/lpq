@@ -1,13 +1,13 @@
+https://httprunner.com/docs/user-guide/enhance-tests/
+配置环境
+首次以管理员执行 hrp startproject 命令，会自动配置venv虚拟环境, 后续执行即可初始化指定名称的项目工程。
+hrp startproject demo
+
 pip install --target=path_name package_name命令，将package_name安装到path_name
 pip install allure-pytest --target=C:\Users\Administrator\.hrp\venv\Lib\site-packages -i https://pypi.tuna.tsinghua.edu.cn/simple
 
 查看pip install 安装的某个包的路径
 可以使用pip uninstall package-name命令，此时终端会报出该包的安装路径，并问是否确认卸载，选择不卸载即可
-
-
-https://httprunner.com/docs/user-guide/enhance-tests/
-执行 hrp startproject 命令，即可初始化指定名称的项目工程。
-hrp startproject demo
 
 转换生成测试用例
 hrp convert .\har\popup.har .\har\popup2.har --to-yaml -d .\testcases

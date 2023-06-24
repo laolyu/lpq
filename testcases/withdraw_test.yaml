@@ -8,19 +8,28 @@ config:
     Content-Type: application/json; charset=UTF-8
     app-id: $appid
   parameters:
+    #    Bearer: ${parameterize($file)}
+    Bearer: [
+      'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJ1c2VyIiwiZXhwIjoxNjgyNjQ5OTk1LCJqdGkiOiIyNTNfNTk5MiIsImlhdCI6MTY4MDA1Nzk5NSwibmJmIjoxNjgwMDU3OTk1LCJJc1JlYWwiOiIxIiwiVWRpIjoiOTg3Y2JiZjJjMTQxMzI0Y2IwMjRhNzViMDlmMzc3M2YiLCJBcHBJZCI6MjUzLCJVaWQiOjU5OTJ9.qzlppXLsQV6svcNy9p40KbVGVrLSal0KJgAqOlljTAA',
+      'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJ1c2VyIiwiZXhwIjoxNjgyNjU2ODEzLCJqdGkiOiIyNTNfNzEyMiIsImlhdCI6MTY4MDA2NDgxMywibmJmIjoxNjgwMDY0ODEzLCJJc1JlYWwiOiIxIiwiVWRpIjoiOTY1MTM0YjBlZjI4MTNiZjdkODRmYTA5YTYxYzE5MWEiLCJBcHBJZCI6MjUzLCJVaWQiOjcxMjJ9.PaXLRlwCp52TkttHLO6QGqx8yVLFNDdS3Kt4G2FpGvY',
+      'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJ1c2VyIiwiZXhwIjoxNjgyNjY5NTc0LCJqdGkiOiIyNTNfNzE2MCIsImlhdCI6MTY4MDA3NzU3NCwibmJmIjoxNjgwMDc3NTc0LCJJc1JlYWwiOiIxIiwiVWRpIjoiMDRlOTJhNmQ4MDAxMzA1ZjI2OGRlMDMyYTg5NzQ4OWEiLCJBcHBJZCI6MjUzLCJVaWQiOjcxNjB9.Van_dV53so1BiqGCF5-PzOnGPdYDRv_PfQSHb4HuV9Y'
+    ]
     ver: [ '1.0.3' ]
-    Bearer: ${parameterize($file)}
+    amount: [ 10,100 ]
     qid-qid_reg: ${parameterize($file)} # -连接的参数为一行固定,共同参与组合
   parameters_setting:
-    pick_order: unique #random只随机选取一组参数运行,sequential运行所有排列组合
+    pick_order: random #random只随机选取一组参数运行,sequential运行所有排列组合
     strategies:
       Bearer:
         name: Bearer
         pick_order: sequential
+      amount:
+        name: amount
+        pick_order: sequential
     #      ver:
     #        name: ver
     #        pick_order: sequential
-    limit: 22
+    limit: 0
   variables:
     udi: ${generate_random_string(32)}
     ware_id: ${generate_random_string(16)}
@@ -42,7 +51,7 @@ teststeps:
       - ware_id
   - name: 红包提现申请0.30
     variables:
-      n_secs: ${get_random(300,600)}
+      n_secs: ${get_random(7,20)}
       do: ${sleep($n_secs)}
       time: ${get_time()}
     request:
@@ -58,7 +67,7 @@ teststeps:
         udi: $udi
         ver: $ver
       body:
-        amount: 30
+        amount: $amount
         imei: ""
         oaid: $oaid
         token: ""
