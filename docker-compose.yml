@@ -1,7 +1,7 @@
 version: '3'
 services:
   jenkins:
-    image: jenkins/jenkins
+    image: jenkins/jenkins:lts
     container_name: jenkins
     restart: always
     ports:
@@ -14,6 +14,6 @@ services:
       # 把宿主机的 /usr/local/python3 目录挂载到 jenkins 容器的 /usr/local/python3 目录下，这样 jenkins 容器就可以使用宿主机的 python3 环境
     environment:
       JAVA_OPTS: "-Duser.timezone=Asia/Shanghai"
-    command: bash -c "export PATH=$PATH:/usr/local/python3"
+      PYTHONPATH: "/usr/local/python3/lib/python3.10/site-packages"
 volumes:
   jenkins-data:
