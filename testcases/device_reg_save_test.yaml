@@ -27,7 +27,7 @@ config:
     udi: ${generate_random_string(32)}
     ware_id: ${generate_random_string(16)}
     oaid: ${get_oaid()}
-    file: C:\pose\first\lpq\b088.csv
+    file: b088.csv
 
 teststeps:
   - name: ""
